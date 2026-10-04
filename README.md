@@ -1,68 +1,10 @@
-# Customer Churn ML
+# Customer Churn Prediction ML Project
 
 ## Project Overview
 
-This project develops a machine learning system to predict customer churn. Multiple classification algorithms are trained, tuned, compared, and evaluated to identify the best-performing model.
+This project predicts whether a customer is likely to churn using Machine Learning.
 
-## Objectives
-
-- Predict whether a customer is likely to churn.
-- Compare multiple machine learning classification models.
-- Perform hyperparameter tuning using GridSearchCV.
-- Use Stratified K-Fold Cross-Validation.
-- Evaluate models using Precision, Recall, F1-Score, and ROC-AUC.
-- Select and save the best-performing model.
-
-## Features Used
-
-The model uses the following customer-related features:
-
-- Tenure
-- Support Tickets
-- Monthly Spend
-- Last Login Days
-- Plan Type
-
-## Machine Learning Models
-
-Four classification models were trained and compared:
-
-1. Logistic Regression
-2. Random Forest
-3. XGBoost
-4. LightGBM
-
-## Hyperparameter Tuning
-
-GridSearchCV with Stratified K-Fold Cross-Validation was used to optimize model parameters.
-
-## Model Evaluation
-
-The models were evaluated using:
-
-- Precision
-- Recall
-- F1-Score
-- ROC-AUC
-- Confusion Matrix
-- Classification Report
-- ROC-AUC Curves
-
-## Champion Model
-
-Based on the available test split, **Random Forest** was selected as the champion model.
-
-| Model | Precision | Recall | F1-Score | ROC-AUC |
-|---|---:|---:|---:|---:|
-| Random Forest | 1.00 | 1.00 | 1.00 | 1.00 |
-
-> Note: The dataset used for this project is very small, so the reported test metrics should not be interpreted as evidence of real-world 100% accuracy.
-
-## Project Files
-
-- `Customer_Churn_ML.ipynb` — Complete Jupyter Notebook
-- `champion_model.joblib` — Saved Random Forest model
-- `feature_names.joblib` — Saved feature information
+The trained machine learning model is deployed as a REST API using FastAPI and can be containerized using Docker.
 
 ## Technologies Used
 
@@ -70,12 +12,32 @@ Based on the available test split, **Random Forest** was selected as the champio
 - Pandas
 - NumPy
 - Scikit-learn
-- XGBoost
-- LightGBM
-- Matplotlib
-- Jupyter Notebook
-- GitHub
+- FastAPI
+- Pydantic
+- Uvicorn
+- Joblib
+- Docker
 
-## Conclusion
+## Project Files
 
-The project demonstrates a complete supervised machine learning workflow for customer churn prediction, including preprocessing, model training, hyperparameter tuning, evaluation, model selection, and model serialization.
+- `churn_model.pkl` — Trained machine learning model
+- `app.py` — FastAPI REST API
+- `requirements.txt` — Required Python packages
+- `Dockerfile` — Docker configuration
+- `test_api.py` — API unit tests
+- `README.md` — Project documentation
+
+## API Endpoint
+
+### POST `/predict`
+
+The API accepts customer information and returns a churn prediction and prediction probabilities.
+
+Example response:
+
+```json
+{
+  "prediction": 1,
+  "churn_probability": 0.80,
+  "no_churn_probability": 0.20
+}tuning, evaluation, model selection, and model serialization.
